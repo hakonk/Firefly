@@ -20,13 +20,18 @@
 @interface FireflyViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *background;
 @property(strong,nonatomic)NSArray *flyArray;
-@property(strong,nonatomic)NSTimer *timer;
+@property(nonatomic,strong)NSNotificationCenter *listener;
 
 @end
 
 @implementation FireflyViewController
 
-
+// make tab bar view visible
+- (void)tappedScreen:(UITapGestureRecognizer *)sender {
+    if (sender.state == UIGestureRecognizerStateEnded)
+        [self.navigationController setNavigationBarHidden:!self.navigationController.navigationBarHidden
+                                                     animated:YES];
+}
 
 -(NSArray *)flyArray
 {
@@ -48,23 +53,57 @@
     return _flyArray;
 }
 
-
--(void)changePicture
+-(void)viewWillAppear:(BOOL)animated
 {
-    int test = ((int)[self.flyArray indexOfObject:self.background.image]+1)%2;
-    self.background.image = [self.flyArray objectAtIndex:test];
-
+    [super viewWillAppear:animated];
+    self.listener = [NSNotificationCenter defaultCenter];
+    [self.listener addObserver:self
+                      selector:@selector(changePicture:)
+                          name:@"screenUpdate"
+                        object:nil];
 }
 
+-(void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    self.listener = nil;
+}
+
+
+-(void)changePicture:(NSNotification *)notification
+{
+    int index = [[notification object] isKindOfClass:[NSNumber class]] ? [[notification object] integerValue] : -1;
+    if (index!=-1)
+        self.background.image = [self.flyArray objectAtIndex:index];
+    else
+        NSLog(@"ScreenUpdate: Value from pd not 0 or 1");
+}
+
+-(void)configureView
+{
+    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                                           action:@selector(tappedScreen:)];
+    tapGestureRecognizer.numberOfTapsRequired = 1;
+    [self.view addGestureRecognizer:tapGestureRecognizer];
+    self.background.image = [self.flyArray objectAtIndex:0];
+    self.navigationController.navigationBar.barTintColor = [UIColor blackColor];
+    [self.navigationController setNavigationBarHidden:YES animated:NO];
+    
+
+}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self configureView];
     Puredata *pd = (Puredata *)[Puredata sharedPuredata];
     [pd openPatch:@"newFirefly.pd"];
     [pd.audioController setActive:YES];
-    //self.background.image = [self.flyArray objectAtIndex:1];
-    //self.timer = [NSTimer scheduledTimerWithTimeInterval:1. target:self selector:@selector(changePicture) userInfo:nil repeats:YES];
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    
 }
 
 - (void)didReceiveMemoryWarning

@@ -117,6 +117,8 @@
 		F82B23EE19B76936001600C9 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F82B23ED19B76936001600C9 /* CoreAudio.framework */; };
 		F82B23F019B772D4001600C9 /* newFirefly.pd in Resources */ = {isa = PBXBuildFile; fileRef = F82B23EF19B772D4001600C9 /* newFirefly.pd */; };
 		F82B23F219B77525001600C9 /* bonk~.c in Sources */ = {isa = PBXBuildFile; fileRef = F82B23F119B77525001600C9 /* bonk~.c */; settings = {COMPILER_FLAGS = "-DPD -DHAVE_UNISTD_H -DUSEAPI_DUMMY -DHAVE_ALLOCA_H"; }; };
+		F82D38DD19B85E730070BD44 /* FireflyParametersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F82D38DC19B85E730070BD44 /* FireflyParametersViewController.m */; };
+		F82D38E019B863DE0070BD44 /* PdDispatcher+additionalGetters.m in Sources */ = {isa = PBXBuildFile; fileRef = F82D38DF19B863DE0070BD44 /* PdDispatcher+additionalGetters.m */; };
 		F8E89EA7199E3B380009273C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8E89EA6199E3B380009273C /* Foundation.framework */; };
 		F8E89EA9199E3B380009273C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8E89EA8199E3B380009273C /* CoreGraphics.framework */; };
 		F8E89EAB199E3B380009273C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8E89EAA199E3B380009273C /* UIKit.framework */; };
@@ -279,6 +281,10 @@
 		F82B23ED19B76936001600C9 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
 		F82B23EF19B772D4001600C9 /* newFirefly.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = newFirefly.pd; sourceTree = "<group>"; };
 		F82B23F119B77525001600C9 /* bonk~.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = "bonk~.c"; path = "bonk~/bonk~.c"; sourceTree = "<group>"; };
+		F82D38DB19B85E730070BD44 /* FireflyParametersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FireflyParametersViewController.h; sourceTree = "<group>"; };
+		F82D38DC19B85E730070BD44 /* FireflyParametersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FireflyParametersViewController.m; sourceTree = "<group>"; };
+		F82D38DE19B863DE0070BD44 /* PdDispatcher+additionalGetters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PdDispatcher+additionalGetters.h"; sourceTree = "<group>"; };
+		F82D38DF19B863DE0070BD44 /* PdDispatcher+additionalGetters.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PdDispatcher+additionalGetters.m"; sourceTree = "<group>"; };
 		F8E89EA3199E3B380009273C /* FireFly.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FireFly.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8E89EA6199E3B380009273C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		F8E89EA8199E3B380009273C /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -348,6 +354,8 @@
 				F82B22F719B768D5001600C9 /* PdFile.m */,
 				F82B22F819B768D5001600C9 /* PdMidiDispatcher.h */,
 				F82B22F919B768D5001600C9 /* PdMidiDispatcher.m */,
+				F82D38DE19B863DE0070BD44 /* PdDispatcher+additionalGetters.h */,
+				F82D38DF19B863DE0070BD44 /* PdDispatcher+additionalGetters.m */,
 			);
 			path = objc;
 			sourceTree = "<group>";
@@ -525,6 +533,17 @@
 			path = src;
 			sourceTree = "<group>";
 		};
+		F82D38E119B87F800070BD44 /* firefly_pics */ = {
+			isa = PBXGroup;
+			children = (
+				F8E89EDE199E3C4B0009273C /* FF_tall_off.png */,
+				F8E89EE2199E3E360009273C /* FFoff.png */,
+				F8E89EE3199E3E360009273C /* FFon.png */,
+				F8E89EDF199E3C4B0009273C /* FF_tall_on.png */,
+			);
+			name = firefly_pics;
+			sourceTree = "<group>";
+		};
 		F8E89E9A199E3B380009273C = {
 			isa = PBXGroup;
 			children = (
@@ -560,18 +579,17 @@
 		F8E89EAC199E3B380009273C /* FireFly */ = {
 			isa = PBXGroup;
 			children = (
-				F8E89EB8199E3B380009273C /* Main_iPhone.storyboard */,
 				F82B230119B768ED001600C9 /* libpd_wrapper */,
 				F82B231019B768ED001600C9 /* pure-data */,
 				F82B22EB19B768D5001600C9 /* objc */,
 				F8E89EBB199E3B380009273C /* Main_iPad.storyboard */,
 				F8E89EBE199E3B380009273C /* FireflyViewController.h */,
-				F8E89EDE199E3C4B0009273C /* FF_tall_off.png */,
-				F82B23EF19B772D4001600C9 /* newFirefly.pd */,
-				F8E89EE2199E3E360009273C /* FFoff.png */,
-				F8E89EE3199E3E360009273C /* FFon.png */,
-				F8E89EDF199E3C4B0009273C /* FF_tall_on.png */,
+				F8E89EB8199E3B380009273C /* Main_iPhone.storyboard */,
+				F82D38DB19B85E730070BD44 /* FireflyParametersViewController.h */,
+				F82D38DC19B85E730070BD44 /* FireflyParametersViewController.m */,
 				F8E89EBF199E3B380009273C /* FireflyViewController.m */,
+				F82B23EF19B772D4001600C9 /* newFirefly.pd */,
+				F82D38E119B87F800070BD44 /* firefly_pics */,
 				F82B22E819B768B9001600C9 /* Puredata.h */,
 				F82B22E919B768B9001600C9 /* Puredata.m */,
 				F8E89EC1199E3B380009273C /* Images.xcassets */,
@@ -758,6 +776,7 @@
 				F82B23B519B768ED001600C9 /* d_ugen.c in Sources */,
 				F82B23BF19B768ED001600C9 /* g_io.c in Sources */,
 				F82B23DE19B768ED001600C9 /* x_acoustics.c in Sources */,
+				F82D38DD19B85E730070BD44 /* FireflyParametersViewController.m in Sources */,
 				F82B22FD19B768D5001600C9 /* PdBase.m in Sources */,
 				F82B238419B768ED001600C9 /* x_libpdreceive.c in Sources */,
 				F82B23AE19B768ED001600C9 /* d_filter.c in Sources */,
@@ -768,6 +787,7 @@
 				F82B23B619B768ED001600C9 /* g_all_guis.c in Sources */,
 				F8E89EB3199E3B380009273C /* main.m in Sources */,
 				F82B23C819B768ED001600C9 /* g_traversal.c in Sources */,
+				F82D38E019B863DE0070BD44 /* PdDispatcher+additionalGetters.m in Sources */,
 				F82B238819B768ED001600C9 /* choice.c in Sources */,
 				F82B238519B768ED001600C9 /* z_hooks.c in Sources */,
 				F82B23E019B768ED001600C9 /* x_array.c in Sources */,
