@@ -48,30 +48,66 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <sections>
-                            <tableViewSection id="6LB-r1-FSZ">
+                            <tableViewSection id="gWe-Wm-kJv">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="CTD-MS-4uE">
+                                    <tableViewCell contentMode="top" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="parameterCell" id="CTD-MS-4uE">
                                         <rect key="frame" x="0.0" y="64" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="CTD-MS-4uE" id="zaJ-6f-L3v">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <stepper opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="10" translatesAutoresizingMaskIntoConstraints="NO" id="RHZ-vl-4lr">
+                                                    <rect key="frame" x="206" y="7" width="94" height="29"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                    <connections>
+                                                        <action selector="pccStepperAction:" destination="LmZ-bW-OYd" eventType="touchUpInside" id="ems-Cb-ugU"/>
+                                                    </connections>
+                                                </stepper>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PCC: 0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qea-3l-2Gx">
+                                                    <rect key="frame" x="20" y="11" width="55" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="RHZ-vl-4lr" secondAttribute="trailing" constant="20" symbolic="YES" id="84l-z3-0M7"/>
+                                                <constraint firstItem="RHZ-vl-4lr" firstAttribute="centerY" secondItem="Qea-3l-2Gx" secondAttribute="centerY" id="N4t-pA-BhE"/>
+                                                <constraint firstItem="Qea-3l-2Gx" firstAttribute="leading" secondItem="zaJ-6f-L3v" secondAttribute="leading" constant="20" symbolic="YES" id="Yh6-hM-lgR"/>
+                                                <constraint firstItem="Qea-3l-2Gx" firstAttribute="centerY" secondItem="zaJ-6f-L3v" secondAttribute="centerY" id="kwk-Lt-Mmc"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="FFP-Yh-HmT">
+                                    <tableViewCell contentMode="center" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="parameterCell" id="YiD-tr-QB0">
                                         <rect key="frame" x="0.0" y="108" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="FFP-Yh-HmT" id="Bpq-Qq-NWG">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YiD-tr-QB0" id="jDG-Dw-CJz">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="PLO-m8-HBa">
-                                        <rect key="frame" x="0.0" y="152" width="320" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="PLO-m8-HBa" id="nJQ-WC-3nW">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
-                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <stepper opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="10" translatesAutoresizingMaskIntoConstraints="NO" id="fxN-tG-t94">
+                                                    <rect key="frame" x="206" y="7" width="94" height="29"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                    <connections>
+                                                        <action selector="thresholdStepperAction:" destination="LmZ-bW-OYd" eventType="touchUpInside" id="XOE-E5-wSe"/>
+                                                    </connections>
+                                                </stepper>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Threshold: 0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Ap-iv-w9Z">
+                                                    <rect key="frame" x="20" y="11" width="95" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="fxN-tG-t94" firstAttribute="centerY" secondItem="jDG-Dw-CJz" secondAttribute="centerY" id="5Fp-Lb-JFh"/>
+                                                <constraint firstItem="fxN-tG-t94" firstAttribute="centerY" secondItem="1Ap-iv-w9Z" secondAttribute="centerY" id="Bag-zy-iup"/>
+                                                <constraint firstItem="1Ap-iv-w9Z" firstAttribute="leading" secondItem="jDG-Dw-CJz" secondAttribute="leading" constant="20" symbolic="YES" id="T3b-Is-Jg6"/>
+                                                <constraint firstAttribute="trailing" secondItem="fxN-tG-t94" secondAttribute="trailing" constant="20" symbolic="YES" id="vi4-um-8ty"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
@@ -83,6 +119,12 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Firefly parameters" id="LBd-To-IXc"/>
+                    <connections>
+                        <outlet property="pccLabel" destination="Qea-3l-2Gx" id="kTB-xX-DZi"/>
+                        <outlet property="pccStepper" destination="RHZ-vl-4lr" id="XXK-Ol-udA"/>
+                        <outlet property="thresholdLabel" destination="1Ap-iv-w9Z" id="knm-fH-8VD"/>
+                        <outlet property="thresholdStepper" destination="fxN-tG-t94" id="kUn-gl-7kq"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EwN-4P-cru" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

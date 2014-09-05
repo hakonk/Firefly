@@ -14,7 +14,7 @@
 
 -(void)setValueInPd:(float)value forKey:(NSString *)key
 {
-    
+    [PdBase sendFloat:value toReceiver:key];
 }
 
 -(void)openPatch:(NSString *)patchName

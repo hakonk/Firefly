@@ -11,12 +11,28 @@
 
 @interface FireflyParametersViewController ()
 @property(nonatomic,strong)NSNotificationCenter *listener;
-@property(nonatomic)float pcc;
-@property(nonatomic)float threshold;
-
+@property (weak, nonatomic) IBOutlet UILabel *pccLabel;
+@property (weak, nonatomic) IBOutlet UILabel *thresholdLabel;
+@property (weak, nonatomic) IBOutlet UIStepper *pccStepper;
+@property (weak, nonatomic) IBOutlet UIStepper *thresholdStepper;
 @end
 
 @implementation FireflyParametersViewController
+
+
+- (IBAction)pccStepperAction:(UIStepper *)sender {
+    double pccVal = (double)sender.value/10;
+    self.pccLabel.text = [NSString stringWithFormat:@"PCC: %.2f",pccVal];
+    Puredata *pd = [Puredata sharedPuredata];
+    [pd setValueInPd:pccVal forKey:@"pccFromUI"];
+}
+- (IBAction)thresholdStepperAction:(UIStepper *)sender {
+    double threshVal = (double)sender.value/10;
+    self.thresholdLabel.text = [NSString stringWithFormat:@"Threshold: %.2f",threshVal];
+    Puredata *pd = [Puredata sharedPuredata];
+    [pd setValueInPd:threshVal forKey:@"thresholdFromUI"];
+}
+
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -30,23 +46,25 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-//    self.listener = [NSNotificationCenter defaultCenter];
-//    [self.listener addObserver:self
-//                      selector:@selector(printValues:)
-//                          name:@"fireflyParameters"
-//                        object:nil];
-//    Puredata *pd = (Puredata *)[Puredata sharedPuredata];
-//    [pd sendBangToReceiver:@"getParameters"];
+    
 }
 
--(void)printValues:(NSNotification *)notification
+// add steppers as outlets and set the values instead of having two separate floats with the values of pcc and threshold
+-(void)setValuesFromPd:(NSNotification *)notification
 {
     NSEnumerator *received = [(NSMutableDictionary *)[notification object] keyEnumerator];
     NSString *key;
     while (key = [received nextObject]) {
-        NSLog(@"%@",key);
-        if ([key isEqualToString:@"pcc"]) self.pcc = [(NSNumber *)[(NSMutableDictionary *)[notification object] valueForKey:key] floatValue];
-        if ([key isEqualToString:@"threshold"]) self.threshold = [(NSNumber *)[(NSMutableDictionary *)[notification object] valueForKey:key] floatValue];
+        if ([key isEqualToString:@"pcc"]) {
+            float pccVal = [(NSNumber *)[(NSMutableDictionary *)[notification object] valueForKey:key] floatValue];
+            self.pccStepper.value = (int)pccVal*10;
+            self.pccLabel.text = [NSString stringWithFormat:@"PCC: %.2f",pccVal];
+        }
+        if ([key isEqualToString:@"threshold"]) {
+            float threshold = [(NSNumber *)[(NSMutableDictionary *)[notification object] valueForKey:key] floatValue];
+            self.pccStepper.value = (int)threshold*10;
+            self.thresholdLabel.text = [NSString stringWithFormat:@"Threshold: %.2f",threshold];
+        }
     }
 }
 
@@ -61,18 +79,19 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
     self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:.0
                                                                         green:122.0/255.0
                                                                          blue:1.0
                                                                         alpha:1.0];
     self.listener = [NSNotificationCenter defaultCenter];
     [self.listener addObserver:self
-                      selector:@selector(printValues:)
+                      selector:@selector(setValuesFromPd:)
                           name:@"fireflyParameters"
                         object:nil];
     Puredata *pd = (Puredata *)[Puredata sharedPuredata];
     [pd sendBangToReceiver:@"getParameters"];
+    // put this in viewWillAppear instead
+
     
     
     // Uncomment the following line to preserve selection between presentations.
@@ -98,21 +117,20 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 0;
+    return 2;
 }
 
-/*
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+
+/*- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"parameterCell" forIndexPath:indexPath];
     
     // Configure the cell...
     
     return cell;
-}
-*/
+}*/
+
 
 /*
 // Override to support conditional editing of the table view.
