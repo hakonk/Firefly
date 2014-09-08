@@ -21,6 +21,11 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <gestureRecognizers/>
                             </imageView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="Ebq-SR-xhC">
+                                <rect key="frame" x="150" y="274" width="37" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="color" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -32,6 +37,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="activityIndicator" destination="Ebq-SR-xhC" id="cWU-VO-Tjf"/>
                         <outlet property="background" destination="ALg-60-MNg" id="yQ7-gF-5M8"/>
                     </connections>
                 </viewController>
@@ -39,74 +45,77 @@
             </objects>
             <point key="canvasLocation" x="763" y="266"/>
         </scene>
-        <!--Firefly Parameters View Controller - Firefly parameters-->
+        <!--Firefly Parameters View Controller-->
         <scene sceneID="obq-1s-YQM">
             <objects>
                 <tableViewController id="LmZ-bW-OYd" customClass="FireflyParametersViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" sectionIndexMinimumDisplayRowCount="2" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="XxG-7I-dF1">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" sectionIndexMinimumDisplayRowCount="2" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="XxG-7I-dF1">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="sectionIndexColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <sections>
-                            <tableViewSection id="gWe-Wm-kJv">
+                            <tableViewSection headerTitle="Firefly parameters" id="gWe-Wm-kJv">
                                 <cells>
                                     <tableViewCell contentMode="top" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="parameterCell" id="CTD-MS-4uE">
-                                        <rect key="frame" x="0.0" y="64" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="86" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="CTD-MS-4uE" id="zaJ-6f-L3v">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <stepper opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="10" translatesAutoresizingMaskIntoConstraints="NO" id="RHZ-vl-4lr">
-                                                    <rect key="frame" x="206" y="7" width="94" height="29"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                    <connections>
-                                                        <action selector="pccStepperAction:" destination="LmZ-bW-OYd" eventType="touchUpInside" id="ems-Cb-ugU"/>
-                                                    </connections>
-                                                </stepper>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PCC: 0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qea-3l-2Gx">
-                                                    <rect key="frame" x="20" y="11" width="55" height="21"/>
+                                                    <rect key="frame" x="245" y="11" width="55" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="qhc-nA-32g">
+                                                    <rect key="frame" x="18" y="7" width="154" height="31"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <connections>
+                                                        <action selector="pccAction:" destination="LmZ-bW-OYd" eventType="valueChanged" id="GEg-Cu-4uh"/>
+                                                    </connections>
+                                                </slider>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="RHZ-vl-4lr" secondAttribute="trailing" constant="20" symbolic="YES" id="84l-z3-0M7"/>
-                                                <constraint firstItem="RHZ-vl-4lr" firstAttribute="centerY" secondItem="Qea-3l-2Gx" secondAttribute="centerY" id="N4t-pA-BhE"/>
-                                                <constraint firstItem="Qea-3l-2Gx" firstAttribute="leading" secondItem="zaJ-6f-L3v" secondAttribute="leading" constant="20" symbolic="YES" id="Yh6-hM-lgR"/>
-                                                <constraint firstItem="Qea-3l-2Gx" firstAttribute="centerY" secondItem="zaJ-6f-L3v" secondAttribute="centerY" id="kwk-Lt-Mmc"/>
+                                                <constraint firstAttribute="trailing" secondItem="Qea-3l-2Gx" secondAttribute="trailing" constant="20" symbolic="YES" id="Uhd-Bi-Fsm"/>
+                                                <constraint firstItem="Qea-3l-2Gx" firstAttribute="leading" secondItem="qhc-nA-32g" secondAttribute="trailing" constant="75" id="XRz-Wl-gLN"/>
+                                                <constraint firstItem="Qea-3l-2Gx" firstAttribute="centerY" secondItem="zaJ-6f-L3v" secondAttribute="centerY" id="dse-2J-7Lx"/>
+                                                <constraint firstItem="qhc-nA-32g" firstAttribute="leading" secondItem="zaJ-6f-L3v" secondAttribute="leading" constant="20" symbolic="YES" id="enR-XJ-D6l"/>
+                                                <constraint firstItem="qhc-nA-32g" firstAttribute="top" secondItem="zaJ-6f-L3v" secondAttribute="top" constant="7" id="r1j-hj-aES"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="center" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="parameterCell" id="YiD-tr-QB0">
-                                        <rect key="frame" x="0.0" y="108" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="130" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YiD-tr-QB0" id="jDG-Dw-CJz">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <stepper opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="10" translatesAutoresizingMaskIntoConstraints="NO" id="fxN-tG-t94">
-                                                    <rect key="frame" x="206" y="7" width="94" height="29"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                    <connections>
-                                                        <action selector="thresholdStepperAction:" destination="LmZ-bW-OYd" eventType="touchUpInside" id="XOE-E5-wSe"/>
-                                                    </connections>
-                                                </stepper>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Threshold: 0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Ap-iv-w9Z">
-                                                    <rect key="frame" x="20" y="11" width="95" height="21"/>
+                                                    <rect key="frame" x="205" y="11" width="95" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="qdN-5C-ZpZ">
+                                                    <rect key="frame" x="18" y="7" width="154" height="31"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <connections>
+                                                        <action selector="thresholdAction:" destination="LmZ-bW-OYd" eventType="valueChanged" id="A96-hZ-jr4"/>
+                                                    </connections>
+                                                </slider>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="fxN-tG-t94" firstAttribute="centerY" secondItem="jDG-Dw-CJz" secondAttribute="centerY" id="5Fp-Lb-JFh"/>
-                                                <constraint firstItem="fxN-tG-t94" firstAttribute="centerY" secondItem="1Ap-iv-w9Z" secondAttribute="centerY" id="Bag-zy-iup"/>
-                                                <constraint firstItem="1Ap-iv-w9Z" firstAttribute="leading" secondItem="jDG-Dw-CJz" secondAttribute="leading" constant="20" symbolic="YES" id="T3b-Is-Jg6"/>
-                                                <constraint firstAttribute="trailing" secondItem="fxN-tG-t94" secondAttribute="trailing" constant="20" symbolic="YES" id="vi4-um-8ty"/>
+                                                <constraint firstItem="1Ap-iv-w9Z" firstAttribute="leading" secondItem="qdN-5C-ZpZ" secondAttribute="trailing" constant="35" id="7El-17-wbc"/>
+                                                <constraint firstItem="1Ap-iv-w9Z" firstAttribute="centerY" secondItem="jDG-Dw-CJz" secondAttribute="centerY" id="Duo-nk-bbe"/>
+                                                <constraint firstItem="qdN-5C-ZpZ" firstAttribute="leading" secondItem="jDG-Dw-CJz" secondAttribute="leading" constant="20" symbolic="YES" id="T2B-E3-VHo"/>
+                                                <constraint firstItem="qdN-5C-ZpZ" firstAttribute="top" secondItem="jDG-Dw-CJz" secondAttribute="top" constant="7" id="oFK-8j-gxs"/>
+                                                <constraint firstAttribute="trailing" secondItem="1Ap-iv-w9Z" secondAttribute="trailing" constant="20" symbolic="YES" id="wzX-28-oJd"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -118,12 +127,12 @@
                             <outlet property="delegate" destination="LmZ-bW-OYd" id="3uX-c6-imZ"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Firefly parameters" id="LBd-To-IXc"/>
+                    <navigationItem key="navigationItem" id="LBd-To-IXc"/>
                     <connections>
                         <outlet property="pccLabel" destination="Qea-3l-2Gx" id="kTB-xX-DZi"/>
-                        <outlet property="pccStepper" destination="RHZ-vl-4lr" id="XXK-Ol-udA"/>
+                        <outlet property="pccSlider" destination="qhc-nA-32g" id="Hxe-Eu-2m6"/>
                         <outlet property="thresholdLabel" destination="1Ap-iv-w9Z" id="knm-fH-8VD"/>
-                        <outlet property="thresholdStepper" destination="fxN-tG-t94" id="kUn-gl-7kq"/>
+                        <outlet property="thresholdSlider" destination="qdN-5C-ZpZ" id="aed-Kh-LBv"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EwN-4P-cru" userLabel="First Responder" sceneMemberID="firstResponder"/>

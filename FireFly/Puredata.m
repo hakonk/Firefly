@@ -23,21 +23,6 @@
                 path:[[NSBundle mainBundle] resourcePath]];
 }
 
-//-(void)addListenerKeys:(NSArray *)array
-//{
-//    NSEnumerator *allKeys = self.dispatcher.subscriptionKeys;
-//    // if the requested value symbol is not registered in the dispatcher, add a listener in the dispatcher
-//    if (allKeys && array) {
-//        id obj;
-//        while (obj = [allKeys nextObject]) {
-//            if ([obj isKindOfClass:[NSString class]])
-//                for (NSString *newListenerString in array)
-//                    if (![newListenerString isEqualToString:(NSString *)obj])
-//                        [self.dispatcher addListener:self forSource:newListenerString];
-//        }
-//    }
-//}
-
 +(id)sharedPuredata
 {
     static Puredata *sharedPuredata = nil;

@@ -40,8 +40,8 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
-    Puredata *pd = [Puredata sharedPuredata];
-    [pd.audioController setActive:YES];
+//    Puredata *pd = [Puredata sharedPuredata];
+//    [pd.audioController setActive:YES];
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
 }
 
@@ -49,6 +49,7 @@
 {
     Puredata *pd = [Puredata sharedPuredata];
     [pd.audioController setActive:NO];
+    [PdBase closeFile:@"newFirefly.pd"];
     [PdBase setDelegate:nil];
     
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.

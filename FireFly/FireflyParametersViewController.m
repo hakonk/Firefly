@@ -10,28 +10,36 @@
 #import "Puredata.h"
 
 @interface FireflyParametersViewController ()
-@property(nonatomic,strong)NSNotificationCenter *listener;
+
 @property (weak, nonatomic) IBOutlet UILabel *pccLabel;
 @property (weak, nonatomic) IBOutlet UILabel *thresholdLabel;
-@property (weak, nonatomic) IBOutlet UIStepper *pccStepper;
-@property (weak, nonatomic) IBOutlet UIStepper *thresholdStepper;
+@property (weak, nonatomic) IBOutlet UISlider *pccSlider;
+@property (weak, nonatomic) IBOutlet UISlider *thresholdSlider;
 @end
 
 @implementation FireflyParametersViewController
 
+- (IBAction)thresholdAction:(UISlider *)sender {
+    self.thresholdLabel.text = [NSString stringWithFormat:@"Threshold: %.2f",sender.value];
+    Puredata *pd = [Puredata sharedPuredata];
+    [pd setValueInPd:sender.value forKey:@"thresholdFromUI"];
+}
 
-- (IBAction)pccStepperAction:(UIStepper *)sender {
-    double pccVal = (double)sender.value/10;
-    self.pccLabel.text = [NSString stringWithFormat:@"PCC: %.2f",pccVal];
+- (IBAction)pccAction:(UISlider *)sender {
+    self.pccLabel.text = [NSString stringWithFormat:@"PCC: %.2f",sender.value];
     Puredata *pd = [Puredata sharedPuredata];
-    [pd setValueInPd:pccVal forKey:@"pccFromUI"];
+    [pd setValueInPd:sender.value forKey:@"pccFromUI"];
 }
-- (IBAction)thresholdStepperAction:(UIStepper *)sender {
-    double threshVal = (double)sender.value/10;
-    self.thresholdLabel.text = [NSString stringWithFormat:@"Threshold: %.2f",threshVal];
-    Puredata *pd = [Puredata sharedPuredata];
-    [pd setValueInPd:threshVal forKey:@"thresholdFromUI"];
-}
+
+//- (IBAction)pccStepperAction:(UIStepper *)sender {
+//    double pccVal = (double)sender.value/10;
+//    self.pccLabel.text = [NSString stringWithFormat:@"PCC: %.2f",pccVal];
+//    Puredata *pd = [Puredata sharedPuredata];
+//    [pd setValueInPd:pccVal forKey:@"pccFromUI"];
+//}
+//- (IBAction)thresholdStepperAction:(UIStepper *)sender {
+
+//}
 
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -46,7 +54,6 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
 }
 
 // add steppers as outlets and set the values instead of having two separate floats with the values of pcc and threshold
@@ -57,12 +64,12 @@
     while (key = [received nextObject]) {
         if ([key isEqualToString:@"pcc"]) {
             float pccVal = [(NSNumber *)[(NSMutableDictionary *)[notification object] valueForKey:key] floatValue];
-            self.pccStepper.value = (int)pccVal*10;
+            self.pccSlider.value = pccVal;
             self.pccLabel.text = [NSString stringWithFormat:@"PCC: %.2f",pccVal];
         }
         if ([key isEqualToString:@"threshold"]) {
             float threshold = [(NSNumber *)[(NSMutableDictionary *)[notification object] valueForKey:key] floatValue];
-            self.pccStepper.value = (int)threshold*10;
+            self.thresholdSlider.value = threshold;
             self.thresholdLabel.text = [NSString stringWithFormat:@"Threshold: %.2f",threshold];
         }
     }
@@ -74,20 +81,16 @@
     self.listener = nil;
 }
 
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+}
 
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:.0
-                                                                        green:122.0/255.0
-                                                                         blue:1.0
-                                                                        alpha:1.0];
-    self.listener = [NSNotificationCenter defaultCenter];
-    [self.listener addObserver:self
-                      selector:@selector(setValuesFromPd:)
-                          name:@"fireflyParameters"
-                        object:nil];
+    
     Puredata *pd = (Puredata *)[Puredata sharedPuredata];
     [pd sendBangToReceiver:@"getParameters"];
     // put this in viewWillAppear instead
@@ -101,11 +104,6 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 #pragma mark - Table view data source
 

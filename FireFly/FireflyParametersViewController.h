@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface FireflyParametersViewController : UITableViewController
+@property(nonatomic,strong)NSNotificationCenter *listener;
+-(void)setValuesFromPd:(NSNotification *)notification;
 
 @end

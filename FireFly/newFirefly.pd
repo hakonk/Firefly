@@ -1,4 +1,4 @@
-#N canvas 559 439 936 838 10;
+#N canvas 528 312 936 838 10;
 #X obj 115 25 adc~ 1;
 #X obj 115 46 bonk~;
 #X obj 115 139 snapshot~;
