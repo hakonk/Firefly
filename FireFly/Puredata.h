@@ -1,5 +1,12 @@
 /*
- Class that contains all pd related stuff
+ Puredata.h
+ 
+ This class has pd related properties and is
+ intended to be used as a singleton object. Thus,
+ most of the pd related stuff is contained within one object
+ 
+ Håkon Knutzen, Robin, ifi, UIO 2014
+ 
  */
 
 #import <Foundation/Foundation.h>

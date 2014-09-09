@@ -1,11 +1,10 @@
-//
-//  PdDispatcher+additionalGetters.m
-//  FireFly
-//
-//  Created by Håkon on 04/09/14.
-//  Copyright (c) 2014 Robin. All rights reserved.
-//
+/*
+ category intended to provide additional getters
+ e.g. all subscribed listener names
+ 
+ Håkon Knutzen, Robin, ifi, UIO 2014
 
+ */
 #import "PdDispatcher+additionalGetters.h"
 
 @implementation PdDispatcher (additionalGetters)

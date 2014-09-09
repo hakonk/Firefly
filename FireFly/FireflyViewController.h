@@ -1,10 +1,11 @@
-//
-//  FireflyViewController.h
-//  FireFly
-//
-//  Created by Håkon on 15/08/14.
-//  Copyright (c) 2014 Robin. All rights reserved.
-//
+/*
+ FireflyViewController.h
+ 
+ View controller, main window
+ 
+ Håkon Knutzen, Robin, ifi, UIO 2014
+ 
+ */
 
 #import <UIKit/UIKit.h>
 

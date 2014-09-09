@@ -1,10 +1,13 @@
-//
-//  Puredata.m
-//  FireFly
-//
-//  Created by Håkon on 03/09/14.
-//  Copyright (c) 2014 Robin. All rights reserved.
-//
+/*
+ Puredata.m
+ 
+ This class has pd related properties and is
+ intended to be used as a singleton object. Thus,
+ most of the pd related stuff is contained within one object
+ 
+ Håkon Knutzen, Robin, ifi, UIO 2014
+ 
+ */
 
 #import "Puredata.h"
 #import "PdDispatcher+additionalGetters.h"
@@ -40,6 +43,7 @@
 
 void bonk_tilde_setup();
 
+// sets up pd and adds listeners to send objects in the patch
 -(id)init {
     if (self = [super init]) {
         self.audioController = [[PdAudioController alloc] init];
@@ -58,7 +62,11 @@ void bonk_tilde_setup();
     return self;
 }
 
-// creates a dictionary that is sorted in key/value pairs corresponding to the list in pd
+/* 
+ the method below parses a list from pd and creates a dictionary that is sorted 
+ in key/value pairs corresponding to the key/value pairs in the list in pd.
+ The list is broadcasted using a notification that view controllers can listen to.
+ */
 -(void)receiveList:(NSArray *)list fromSource:(NSString *)source
 {
     if ([source isEqualToString:@"listFromPd"] && [list count] > 1) {
@@ -73,7 +81,7 @@ void bonk_tilde_setup();
         NSLog(@"Unrecognized sender or list from pd does not contain even a single key/value pair");
 }
 
-// make this information available to objects that are listeners to a corresponding NSNotification
+// broadcasts messages when onsets are detected such that FireflyViewController can toggle images
 -(void)receiveFloat:(float)received fromSource:(NSString *)source
 {
     if ([source isEqualToString:@"fromPd"]) {
@@ -81,7 +89,6 @@ void bonk_tilde_setup();
         [notificationCenter postNotificationName:@"screenUpdate"
                                           object:@(received)];
     }
-    
 }
 
 

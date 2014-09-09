@@ -1,15 +1,15 @@
-//
-//  FireflyParametersViewController.h
-//  FireFly
-//
-//  Created by Håkon on 04/09/14.
-//  Copyright (c) 2014 Robin. All rights reserved.
-//
+/*
+ FireflyParametersViewController.h
+ 
+ View controller, parameters
+ 
+ Håkon Knutzen, Robin, ifi, UIO 2014
+ 
+ */
 
 #import <UIKit/UIKit.h>
 
 @interface FireflyParametersViewController : UITableViewController
-@property(nonatomic,strong)NSNotificationCenter *listener;
--(void)setValuesFromPd:(NSNotification *)notification;
+
 
 @end

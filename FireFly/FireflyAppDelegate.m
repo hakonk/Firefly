@@ -1,10 +1,9 @@
-//
-//  FireflyAppDelegate.m
-//  FireFly
-//
-//  Created by Håkon on 15/08/14.
-//  Copyright (c) 2014 Robin. All rights reserved.
-//
+/*
+ FireflyAppDelegate.m
+ 
+ Håkon Knutzen, Robin, ifi, UIO 2014
+ 
+ */
 
 #import "FireflyAppDelegate.h"
 #import "Puredata.h"
@@ -40,8 +39,6 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
-//    Puredata *pd = [Puredata sharedPuredata];
-//    [pd.audioController setActive:YES];
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
 }
 
