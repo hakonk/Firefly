@@ -134,10 +134,10 @@
 		F8E89ECB199E3B380009273C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8E89EAA199E3B380009273C /* UIKit.framework */; };
 		F8E89ED3199E3B380009273C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F8E89ED1199E3B380009273C /* InfoPlist.strings */; };
 		F8E89ED5199E3B380009273C /* FireFlyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F8E89ED4199E3B380009273C /* FireFlyTests.m */; };
-		F8E89EE0199E3C4B0009273C /* FF_tall_off.png in Resources */ = {isa = PBXBuildFile; fileRef = F8E89EDE199E3C4B0009273C /* FF_tall_off.png */; };
-		F8E89EE1199E3C4B0009273C /* FF_tall_on.png in Resources */ = {isa = PBXBuildFile; fileRef = F8E89EDF199E3C4B0009273C /* FF_tall_on.png */; };
-		F8E89EE4199E3E360009273C /* FFoff.png in Resources */ = {isa = PBXBuildFile; fileRef = F8E89EE2199E3E360009273C /* FFoff.png */; };
-		F8E89EE5199E3E360009273C /* FFon.png in Resources */ = {isa = PBXBuildFile; fileRef = F8E89EE3199E3E360009273C /* FFon.png */; };
+		F8E89EE0199E3C4B0009273C /* FF_tall_off@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F8E89EDE199E3C4B0009273C /* FF_tall_off@2x.png */; };
+		F8E89EE1199E3C4B0009273C /* FF_tall_on@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F8E89EDF199E3C4B0009273C /* FF_tall_on@2x.png */; };
+		F8E89EE4199E3E360009273C /* FFoff@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F8E89EE2199E3E360009273C /* FFoff@2x.png */; };
+		F8E89EE5199E3E360009273C /* FFon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F8E89EE3199E3E360009273C /* FFon@2x.png */; };
 		F8F7112319D94E6400B3EF9E /* 0x3c0x7e.c in Sources */ = {isa = PBXBuildFile; fileRef = F8F7112219D94E6400B3EF9E /* 0x3c0x7e.c */; settings = {COMPILER_FLAGS = "-DPD -DHAVE_UNISTD_H -DUSEAPI_DUMMY -DHAVE_ALLOCA_H"; }; };
 		F8F7112519D94E7700B3EF9E /* delta~.c in Sources */ = {isa = PBXBuildFile; fileRef = F8F7112419D94E7700B3EF9E /* delta~.c */; settings = {COMPILER_FLAGS = "-DPD -DHAVE_UNISTD_H -DUSEAPI_DUMMY -DHAVE_ALLOCA_H"; }; };
 /* End PBXBuildFile section */
@@ -307,10 +307,10 @@
 		F8E89ED0199E3B380009273C /* FireFlyTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "FireFlyTests-Info.plist"; sourceTree = "<group>"; };
 		F8E89ED2199E3B380009273C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		F8E89ED4199E3B380009273C /* FireFlyTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FireFlyTests.m; sourceTree = "<group>"; };
-		F8E89EDE199E3C4B0009273C /* FF_tall_off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FF_tall_off.png; sourceTree = "<group>"; };
-		F8E89EDF199E3C4B0009273C /* FF_tall_on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FF_tall_on.png; sourceTree = "<group>"; };
-		F8E89EE2199E3E360009273C /* FFoff.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FFoff.png; sourceTree = "<group>"; };
-		F8E89EE3199E3E360009273C /* FFon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FFon.png; sourceTree = "<group>"; };
+		F8E89EDE199E3C4B0009273C /* FF_tall_off@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FF_tall_off@2x.png"; sourceTree = "<group>"; };
+		F8E89EDF199E3C4B0009273C /* FF_tall_on@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FF_tall_on@2x.png"; sourceTree = "<group>"; };
+		F8E89EE2199E3E360009273C /* FFoff@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FFoff@2x.png"; sourceTree = "<group>"; };
+		F8E89EE3199E3E360009273C /* FFon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FFon@2x.png"; sourceTree = "<group>"; };
 		F8F7112219D94E6400B3EF9E /* 0x3c0x7e.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = 0x3c0x7e.c; sourceTree = "<group>"; };
 		F8F7112419D94E7700B3EF9E /* delta~.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "delta~.c"; sourceTree = "<group>"; };
 		F8F7112719D94EC700B3EF9E /* z_zexy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = z_zexy.h; sourceTree = "<group>"; };
@@ -544,10 +544,10 @@
 		F82D38E119B87F800070BD44 /* firefly_pics */ = {
 			isa = PBXGroup;
 			children = (
-				F8E89EDE199E3C4B0009273C /* FF_tall_off.png */,
-				F8E89EE2199E3E360009273C /* FFoff.png */,
-				F8E89EE3199E3E360009273C /* FFon.png */,
-				F8E89EDF199E3C4B0009273C /* FF_tall_on.png */,
+				F8E89EDE199E3C4B0009273C /* FF_tall_off@2x.png */,
+				F8E89EE2199E3E360009273C /* FFoff@2x.png */,
+				F8E89EE3199E3E360009273C /* FFon@2x.png */,
+				F8E89EDF199E3C4B0009273C /* FF_tall_on@2x.png */,
 			);
 			name = firefly_pics;
 			sourceTree = "<group>";
@@ -735,20 +735,20 @@
 				F82B239E19B768ED001600C9 /* rev3~-help.pd in Resources */,
 				F82B239B19B768ED001600C9 /* rev1~.pd in Resources */,
 				F82B239F19B768ED001600C9 /* rev3~.pd in Resources */,
-				F8E89EE4199E3E360009273C /* FFoff.png in Resources */,
+				F8E89EE4199E3E360009273C /* FFoff@2x.png in Resources */,
 				F8E89EBD199E3B380009273C /* Main_iPad.storyboard in Resources */,
 				F82B238B19B768ED001600C9 /* complex-mod~-help.pd in Resources */,
-				F8E89EE0199E3C4B0009273C /* FF_tall_off.png in Resources */,
+				F8E89EE0199E3C4B0009273C /* FF_tall_off@2x.png in Resources */,
 				F82B239819B768ED001600C9 /* rev1-final.pd in Resources */,
 				F8E89EC2199E3B380009273C /* Images.xcassets in Resources */,
 				F82B23F019B772D4001600C9 /* newFirefly.pd in Resources */,
 				F82B238F19B768ED001600C9 /* hilbert~.pd in Resources */,
-				F8E89EE5199E3E360009273C /* FFon.png in Resources */,
+				F8E89EE5199E3E360009273C /* FFon@2x.png in Resources */,
 				F8E89EBA199E3B380009273C /* Main_iPhone.storyboard in Resources */,
 				F82B239719B768ED001600C9 /* README.txt in Resources */,
 				F82B238719B768ED001600C9 /* choice-help.pd in Resources */,
 				F8E89EB1199E3B380009273C /* InfoPlist.strings in Resources */,
-				F8E89EE1199E3C4B0009273C /* FF_tall_on.png in Resources */,
+				F8E89EE1199E3C4B0009273C /* FF_tall_on@2x.png in Resources */,
 				F82B23A219B768ED001600C9 /* stdout-help.pd in Resources */,
 				F82B23A419B768ED001600C9 /* CHANGELOG.txt in Resources */,
 				F82B239C19B768ED001600C9 /* rev2~-help.pd in Resources */,

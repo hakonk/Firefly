@@ -42,13 +42,13 @@
     NSString *path = [[NSBundle mainBundle] resourcePath];
     if (!_flyArray) {
         if (IS_IPHONE5 || IS_SIMULATOR_5 || IS_IPOD) {
-            UIImage *on = [UIImage imageWithContentsOfFile: [NSString stringWithFormat:@"%@/FF_tall_off.png",path]];
-            UIImage *off = [UIImage imageWithContentsOfFile: [NSString stringWithFormat:@"%@/FF_tall_on.png",path]];
+            UIImage *on = [UIImage imageWithContentsOfFile: [NSString stringWithFormat:@"%@/FF_tall_off@2x.png",path]];
+            UIImage *off = [UIImage imageWithContentsOfFile: [NSString stringWithFormat:@"%@/FF_tall_on@2x.png",path]];
             _flyArray = [[NSArray alloc] initWithObjects:on,off, nil];
         }
         else if (IS_IPHONE4 || IS_SIMULATOR_4) {
-            UIImage *on = [UIImage imageWithContentsOfFile: [NSString stringWithFormat:@"%@/FFoff.png",path]];
-            UIImage *off = [UIImage imageWithContentsOfFile: [NSString stringWithFormat:@"%@/FFon.png",path]];
+            UIImage *on = [UIImage imageWithContentsOfFile: [NSString stringWithFormat:@"%@/FFoff@2x.png",path]];
+            UIImage *off = [UIImage imageWithContentsOfFile: [NSString stringWithFormat:@"%@/FFon@2x.png",path]];
             _flyArray = [[NSArray alloc] initWithObjects:on, off, nil];
         }
         else
