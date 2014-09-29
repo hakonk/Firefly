@@ -35,6 +35,7 @@
         [self.navigationController setNavigationBarHidden:!self.navigationController.navigationBarHidden
                                                  animated:YES];
 }
+
 // lazy instantiation of array holding the two firefly images
 -(NSArray *)flyArray
 {
@@ -77,7 +78,7 @@
 // method for changing between active and passive firefly
 -(void)changePicture:(NSNotification *)notification
 {
-    int index = [[notification object] isKindOfClass:[NSNumber class]] ? [[notification object] integerValue] : -1;
+    int index = [[notification object] isKindOfClass:[NSNumber class]] ? (int)[[notification object] integerValue] : -1;
     if (index==0 || index==1)
         self.background.image = [self.flyArray objectAtIndex:index];
     else
@@ -101,7 +102,7 @@
         [pd openPatch:@"newFirefly.pd"];
         [pd.audioController setActive:YES];
         dispatch_async(dispatch_get_main_queue(), ^{
-            // avoid retain cycle by assigning self to a weak pointer before passing it to the main queue
+            // avoid retain cycle by assigning self to a weak pointer before passing it to the block
             __weak FireflyViewController *weakSelf = self;
             [weakSelf.activityIndicator stopAnimating];
         });

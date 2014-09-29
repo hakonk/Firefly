@@ -42,6 +42,8 @@
 }
 
 void bonk_tilde_setup();
+void delta_tilde_setup();
+void setup_0x3c0x7e();
 
 // sets up pd and adds listeners to send objects in the patch
 -(id)init {
@@ -52,6 +54,8 @@ void bonk_tilde_setup();
                                                  inputEnabled:YES
                                                 mixingEnabled:YES];
         bonk_tilde_setup();
+        delta_tilde_setup();
+        setup_0x3c0x7e();
         self.dispatcher = [[PdDispatcher alloc] init];
         [PdBase setDelegate:self.dispatcher];
         [self.dispatcher addListener:self

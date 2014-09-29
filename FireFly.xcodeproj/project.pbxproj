@@ -138,6 +138,8 @@
 		F8E89EE1199E3C4B0009273C /* FF_tall_on.png in Resources */ = {isa = PBXBuildFile; fileRef = F8E89EDF199E3C4B0009273C /* FF_tall_on.png */; };
 		F8E89EE4199E3E360009273C /* FFoff.png in Resources */ = {isa = PBXBuildFile; fileRef = F8E89EE2199E3E360009273C /* FFoff.png */; };
 		F8E89EE5199E3E360009273C /* FFon.png in Resources */ = {isa = PBXBuildFile; fileRef = F8E89EE3199E3E360009273C /* FFon.png */; };
+		F8F7112319D94E6400B3EF9E /* 0x3c0x7e.c in Sources */ = {isa = PBXBuildFile; fileRef = F8F7112219D94E6400B3EF9E /* 0x3c0x7e.c */; settings = {COMPILER_FLAGS = "-DPD -DHAVE_UNISTD_H -DUSEAPI_DUMMY -DHAVE_ALLOCA_H"; }; };
+		F8F7112519D94E7700B3EF9E /* delta~.c in Sources */ = {isa = PBXBuildFile; fileRef = F8F7112419D94E7700B3EF9E /* delta~.c */; settings = {COMPILER_FLAGS = "-DPD -DHAVE_UNISTD_H -DUSEAPI_DUMMY -DHAVE_ALLOCA_H"; }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -309,6 +311,12 @@
 		F8E89EDF199E3C4B0009273C /* FF_tall_on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FF_tall_on.png; sourceTree = "<group>"; };
 		F8E89EE2199E3E360009273C /* FFoff.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FFoff.png; sourceTree = "<group>"; };
 		F8E89EE3199E3E360009273C /* FFon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FFon.png; sourceTree = "<group>"; };
+		F8F7112219D94E6400B3EF9E /* 0x3c0x7e.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = 0x3c0x7e.c; sourceTree = "<group>"; };
+		F8F7112419D94E7700B3EF9E /* delta~.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "delta~.c"; sourceTree = "<group>"; };
+		F8F7112719D94EC700B3EF9E /* z_zexy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = z_zexy.h; sourceTree = "<group>"; };
+		F8F7112819D94ED900B3EF9E /* zexySIMD.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = zexySIMD.h; sourceTree = "<group>"; };
+		F8F7112919D94F0700B3EF9E /* zexy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = zexy.h; sourceTree = "<group>"; };
+		F8F7112A19D94F2900B3EF9E /* zexyconf.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = zexyconf.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -587,6 +595,7 @@
 				F8E89EB8199E3B380009273C /* Main_iPhone.storyboard */,
 				F82D38DB19B85E730070BD44 /* FireflyParametersViewController.h */,
 				F82D38DC19B85E730070BD44 /* FireflyParametersViewController.m */,
+				F8F7112619D94E8100B3EF9E /* externals */,
 				F8E89EBF199E3B380009273C /* FireflyViewController.m */,
 				F82B23EF19B772D4001600C9 /* newFirefly.pd */,
 				F82D38E119B87F800070BD44 /* firefly_pics */,
@@ -627,6 +636,19 @@
 				F8E89ED1199E3B380009273C /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F8F7112619D94E8100B3EF9E /* externals */ = {
+			isa = PBXGroup;
+			children = (
+				F8F7112419D94E7700B3EF9E /* delta~.c */,
+				F8F7112819D94ED900B3EF9E /* zexySIMD.h */,
+				F8F7112A19D94F2900B3EF9E /* zexyconf.h */,
+				F8F7112919D94F0700B3EF9E /* zexy.h */,
+				F8F7112719D94EC700B3EF9E /* z_zexy.h */,
+				F8F7112219D94E6400B3EF9E /* 0x3c0x7e.c */,
+			);
+			name = externals;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -784,7 +806,9 @@
 				F82B23CF19B768ED001600C9 /* m_conf.c in Sources */,
 				F82B23BD19B768ED001600C9 /* g_hdial.c in Sources */,
 				F82B23BE19B768ED001600C9 /* g_hslider.c in Sources */,
+				F8F7112519D94E7700B3EF9E /* delta~.c in Sources */,
 				F82B23B619B768ED001600C9 /* g_all_guis.c in Sources */,
+				F8F7112319D94E6400B3EF9E /* 0x3c0x7e.c in Sources */,
 				F8E89EB3199E3B380009273C /* main.m in Sources */,
 				F82B23C819B768ED001600C9 /* g_traversal.c in Sources */,
 				F82D38E019B863DE0070BD44 /* PdDispatcher+additionalGetters.m in Sources */,
