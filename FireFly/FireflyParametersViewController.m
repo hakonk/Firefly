@@ -26,18 +26,18 @@
 @implementation FireflyParametersViewController
 
 - (IBAction)thresholdAction:(UISlider *)sender {
-    self.thresholdLabel.text = [NSString stringWithFormat:@"Threshold: %.2f",sender.value];
+    self.thresholdLabel.text = [NSString stringWithFormat:@"%.2f",sender.value];
     Puredata *pd = [Puredata sharedPuredata];
     [pd setValueInPd:sender.value forKey:@"thresholdFromUI"];
 }
 
 - (IBAction)pccAction:(UISlider *)sender {
-    self.pccLabel.text = [NSString stringWithFormat:@"PCC: %.2f",sender.value];
+    self.pccLabel.text = [NSString stringWithFormat:@"%.2f",sender.value];
     Puredata *pd = [Puredata sharedPuredata];
     [pd setValueInPd:sender.value forKey:@"pccFromUI"];
 }
 - (IBAction)deafSliderAction:(UISlider *)sender {
-    self.deafPeriodLabel.text=[NSString stringWithFormat:@"Deaf period: %.2f",sender.value];
+    self.deafPeriodLabel.text=[NSString stringWithFormat:@"%.2f ms",sender.value];
     Puredata *pd=[Puredata sharedPuredata];
     [pd setValueInPd:sender.value forKey:@"deafPeriodFromUI"];
 }
@@ -56,17 +56,17 @@
         if ([key isEqualToString:@"pcc"]) {
             float pccVal = [(NSNumber *)[(NSMutableDictionary *)[notification object] valueForKey:key] floatValue];
             self.pccSlider.value = pccVal;
-            self.pccLabel.text = [NSString stringWithFormat:@"PCC: %.2f",pccVal];
+            self.pccLabel.text = [NSString stringWithFormat:@"%.2f",pccVal];
         }
         if ([key isEqualToString:@"threshold"]) {
             float threshold = [(NSNumber *)[(NSMutableDictionary *)[notification object] valueForKey:key] floatValue];
             self.thresholdSlider.value = threshold;
-            self.thresholdLabel.text = [NSString stringWithFormat:@"Threshold: %.2f",threshold];
+            self.thresholdLabel.text = [NSString stringWithFormat:@"%.2f",threshold];
         }
         if ([key isEqualToString:@"deafPeriod"]){
             float deafPeriod=[(NSNumber *)[(NSMutableDictionary *)[notification object] valueForKey:key] floatValue];
             self.deafPeriodSlider.value=deafPeriod;
-            self.deafPeriodLabel.text=[NSString stringWithFormat:@"Deaf period: %.2f",deafPeriod];
+            self.deafPeriodLabel.text=[NSString stringWithFormat:@"Period %.2f",deafPeriod];
         }
         if([key isEqualToString:@"deafEnable"]){
             int deafEnable=(int)[(NSNumber *)[(NSMutableDictionary *)[notification object] valueForKey:key] integerValue];

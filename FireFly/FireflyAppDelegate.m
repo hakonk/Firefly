@@ -13,6 +13,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    [[UIApplication sharedApplication] setIdleTimerDisabled: YES];
     return YES;
 }
 							
@@ -26,6 +27,7 @@
 {
     Puredata *pd = [Puredata sharedPuredata];
     [pd.audioController setActive:NO];
+    [[UIApplication sharedApplication] setIdleTimerDisabled: NO];
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
 }
@@ -34,6 +36,7 @@
 {
     Puredata *pd = [Puredata sharedPuredata];
     [pd.audioController setActive:YES];
+    [[UIApplication sharedApplication] setIdleTimerDisabled: YES];
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
 }
 
@@ -44,10 +47,13 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {
+    [[UIApplication sharedApplication] setIdleTimerDisabled: NO];
     Puredata *pd = [Puredata sharedPuredata];
     [pd.audioController setActive:NO];
     [PdBase closeFile:@"newFirefly.pd"];
     [PdBase setDelegate:nil];
+    pd.audioController=nil;
+    
     
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
