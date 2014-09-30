@@ -10,14 +10,10 @@
 #import "FireflyViewController.h"
 #import "FireflyParametersViewController.h"
 #import "Puredata.h"
-#define IS_TALL (self.view.bounds.size.height == 568.0)
-#define IS_IPHONE ([[UIDevice currentDevice].model isEqualToString:@"iPhone"])
-#define IS_IPOD ([[UIDevice currentDevice].model isEqualToString:@"iPod touch"])
-#define IS_SIMULATOR ([[UIDevice currentDevice].model isEqualToString:@"iPhone Simulator"])
-#define IS_SIMULATOR_4 (IS_SIMULATOR && !IS_TALL)
-#define IS_SIMULATOR_5 (IS_SIMULATOR && IS_TALL)
-#define IS_IPHONE5 (IS_TALL && IS_IPHONE)
-#define IS_IPHONE4 (IS_IPHONE && !IS_TALL)
+#define IS_FOUR_RES ((int)self.view.bounds.size.height==480)
+#define IS_FIVE_RES ((int)self.view.bounds.size.height==568)
+#define IS_SIX_RES ((int)self.view.bounds.size.height==667)
+#define IS_SIXPLUS_RES ((int)self.view.bounds.size.height==736)
 
 @interface FireflyViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *background;
@@ -41,15 +37,21 @@
 {
     NSString *path = [[NSBundle mainBundle] resourcePath];
     if (!_flyArray) {
-        if (IS_IPHONE5 || IS_SIMULATOR_5 || IS_IPOD) {
+        if (IS_FIVE_RES) {
             UIImage *on = [UIImage imageWithContentsOfFile: [NSString stringWithFormat:@"%@/FF_tall_off@2x.png",path]];
             UIImage *off = [UIImage imageWithContentsOfFile: [NSString stringWithFormat:@"%@/FF_tall_on@2x.png",path]];
             _flyArray = [[NSArray alloc] initWithObjects:on,off, nil];
         }
-        else if (IS_IPHONE4 || IS_SIMULATOR_4) {
+        else if (IS_FOUR_RES) {
             UIImage *on = [UIImage imageWithContentsOfFile: [NSString stringWithFormat:@"%@/FFoff@2x.png",path]];
             UIImage *off = [UIImage imageWithContentsOfFile: [NSString stringWithFormat:@"%@/FFon@2x.png",path]];
             _flyArray = [[NSArray alloc] initWithObjects:on, off, nil];
+        }
+        else if(IS_SIX_RES){
+            
+        }
+        else if(IS_SIXPLUS_RES){
+            
         }
         else
             _flyArray = nil;
@@ -94,7 +96,7 @@
     tapGestureRecognizer.numberOfTapsRequired = 1;
     [self.view addGestureRecognizer:tapGestureRecognizer];
     self.background.image = [self.flyArray objectAtIndex:0];
-    self.navigationController.navigationBar.barTintColor = [UIColor blackColor];
+    //self.navigationController.navigationBar.barTintColor = [UIColor blackColor];
     [self.navigationController setNavigationBarHidden:YES animated:NO];
     dispatch_queue_t pdqueue= dispatch_queue_create("PD_QUEUE", NULL);
     dispatch_async(pdqueue, ^{

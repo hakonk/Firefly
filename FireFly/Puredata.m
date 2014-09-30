@@ -52,7 +52,7 @@ void setup_0x3c0x7e();
         [self.audioController configurePlaybackWithSampleRate:44100
                                                numberChannels:2
                                                  inputEnabled:YES
-                                                mixingEnabled:YES];
+                                                mixingEnabled:NO];
         bonk_tilde_setup();
         delta_tilde_setup();
         setup_0x3c0x7e();
