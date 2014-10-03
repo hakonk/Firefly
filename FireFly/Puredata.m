@@ -62,6 +62,8 @@ void setup_0x3c0x7e();
                            forSource:@"fromPd"];
         [self.dispatcher addListener:self
                            forSource:@"listFromPd"];
+        [self.dispatcher addListener:self
+                           forSource:@"bonkInput"];
     }
     return self;
 }
@@ -88,12 +90,21 @@ void setup_0x3c0x7e();
 // broadcasts messages when onsets are detected such that FireflyViewController can toggle images
 -(void)receiveFloat:(float)received fromSource:(NSString *)source
 {
+    
     if ([source isEqualToString:@"fromPd"]) {
         NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
         [notificationCenter postNotificationName:@"screenUpdate"
                                           object:@(received)];
     }
+    if ([source isEqualToString:@"bonkInput"]){
+        NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+        NSLog(@"recieved %f",received);
+        [notificationCenter postNotificationName:@"bonkInput"
+                                          object:@(received)];
+    }
 }
+
+
 
 
 

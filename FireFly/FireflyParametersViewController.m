@@ -20,13 +20,14 @@
 @property (weak, nonatomic) IBOutlet UILabel *deafEnabledLabel;
 @property (weak, nonatomic) IBOutlet UISlider *deafPeriodSlider;
 @property (weak, nonatomic) IBOutlet UILabel *deafPeriodLabel;
+@property (weak, nonatomic) IBOutlet UILabel *bonkInputLabel;
 @property(nonatomic,strong)NSNotificationCenter *listener;
 @end
 
 @implementation FireflyParametersViewController
 
 - (IBAction)thresholdAction:(UISlider *)sender {
-    self.thresholdLabel.text = [NSString stringWithFormat:@"%.2f",sender.value];
+    self.thresholdLabel.text = [NSString stringWithFormat:@"Set %.2f",sender.value];
     Puredata *pd = [Puredata sharedPuredata];
     [pd setValueInPd:sender.value forKey:@"thresholdFromUI"];
 }
@@ -61,7 +62,7 @@
         if ([key isEqualToString:@"threshold"]) {
             float threshold = [(NSNumber *)[(NSMutableDictionary *)[notification object] valueForKey:key] floatValue];
             self.thresholdSlider.value = threshold;
-            self.thresholdLabel.text = [NSString stringWithFormat:@"%.2f",threshold];
+            self.thresholdLabel.text = [NSString stringWithFormat:@"Set %.2f",threshold];
         }
         if ([key isEqualToString:@"deafPeriod"]){
             float deafPeriod=[(NSNumber *)[(NSMutableDictionary *)[notification object] valueForKey:key] floatValue];
@@ -91,8 +92,18 @@
                       selector:@selector(setValuesFromPd:)
                           name:@"fireflyParameters"
                         object:nil];
+    [self.listener addObserver:self
+                       selector:@selector(setBonkInput:)
+                           name:@"bonkInput"
+                         object:nil];
     Puredata *pd = (Puredata *)[Puredata sharedPuredata];
     [pd sendBangToReceiver:@"getParameters"];
+}
+
+-(void)setBonkInput:(NSNotification *)notification
+{
+    float received=[[notification object] floatValue];
+    self.bonkInputLabel.text=[NSString stringWithFormat:@"Detected: %.2f",received];
 }
 
 

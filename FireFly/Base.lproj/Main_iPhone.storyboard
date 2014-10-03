@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="DnR-Hd-wiC">
     <dependencies>
+        <deployment defaultVersion="1808" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -105,25 +106,33 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JLB-kS-INM">
-                                                    <rect key="frame" x="8" y="44" width="10" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                                 <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="tnj-Ua-Cze">
                                                     <rect key="frame" x="6" y="8" width="308" height="31"/>
                                                     <connections>
                                                         <action selector="thresholdAction:" destination="LmZ-bW-OYd" eventType="valueChanged" id="QA6-vj-HKr"/>
                                                     </connections>
                                                 </slider>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Detected: 0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QFh-uS-bw0">
+                                                    <rect key="frame" x="223" y="43" width="89" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Set: 0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JLB-kS-INM">
+                                                    <rect key="frame" x="8" y="43" width="45" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="JLB-kS-INM" firstAttribute="leading" secondItem="tnj-Ua-Cze" secondAttribute="leading" id="4NS-XY-szu"/>
                                                 <constraint firstItem="tnj-Ua-Cze" firstAttribute="top" secondItem="fXS-4B-l8E" secondAttribute="topMargin" id="Ads-ej-GIx"/>
-                                                <constraint firstItem="JLB-kS-INM" firstAttribute="top" secondItem="tnj-Ua-Cze" secondAttribute="bottom" constant="6" id="Sw9-bO-dwK"/>
+                                                <constraint firstItem="QFh-uS-bw0" firstAttribute="trailing" secondItem="tnj-Ua-Cze" secondAttribute="trailing" id="LeM-fs-UED"/>
+                                                <constraint firstAttribute="bottom" secondItem="JLB-kS-INM" secondAttribute="bottom" id="dYv-zp-oeB"/>
                                                 <constraint firstItem="tnj-Ua-Cze" firstAttribute="trailing" secondItem="fXS-4B-l8E" secondAttribute="trailingMargin" id="hWu-uC-Egv"/>
-                                                <constraint firstItem="tnj-Ua-Cze" firstAttribute="leading" secondItem="JLB-kS-INM" secondAttribute="leading" id="mbL-gb-O1n"/>
                                                 <constraint firstItem="tnj-Ua-Cze" firstAttribute="leading" secondItem="fXS-4B-l8E" secondAttribute="leadingMargin" id="nig-6M-qgB"/>
+                                                <constraint firstItem="QFh-uS-bw0" firstAttribute="baseline" secondItem="JLB-kS-INM" secondAttribute="baseline" id="qmR-Ll-PMQ"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -198,6 +207,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="LBd-To-IXc"/>
                     <connections>
+                        <outlet property="bonkInputLabel" destination="QFh-uS-bw0" id="Bcr-uh-0Zh"/>
                         <outlet property="deafEnabledLabel" destination="Gue-sI-MKI" id="6Gi-no-JC2"/>
                         <outlet property="deafPeriodLabel" destination="89J-bX-2jt" id="iMz-IH-Ag7"/>
                         <outlet property="deafPeriodSlider" destination="Y7M-rP-nJf" id="slD-pa-sxN"/>
