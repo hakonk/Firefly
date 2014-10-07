@@ -74,7 +74,9 @@
 -(void)viewDidDisappear:(BOOL)animated
 {
     [super viewDidDisappear:animated];
+    [self.listener removeObserver:self];
     self.listener = nil;
+    self.flyArray=nil;
 }
 
 // method for changing between active and passive firefly
@@ -82,7 +84,7 @@
 {
     int index = [[notification object] isKindOfClass:[NSNumber class]] ? (int)[[notification object] integerValue] : -1;
     if (index==0 || index==1)
-        self.background.image = [self.flyArray objectAtIndex:index];
+        self.background.image = [[self.flyArray objectAtIndex:index] copy];
     else
         NSLog(@"Background image error: Value from pd not a number or out of array bounds");
 }
@@ -95,9 +97,10 @@
                                                                                            action:@selector(tappedScreen:)];
     tapGestureRecognizer.numberOfTapsRequired = 1;
     [self.view addGestureRecognizer:tapGestureRecognizer];
-    self.background.image = [self.flyArray objectAtIndex:0];
-    //self.navigationController.navigationBar.barTintColor = [UIColor blackColor];
-    [self.navigationController setNavigationBarHidden:YES animated:NO];
+    self.background.image = [[self.flyArray objectAtIndex:0] copy];
+    self.navigationController.navigationBar.barTintColor = [UIColor clearColor];
+    [self.navigationController setNavigationBarHidden:YES
+                                             animated:NO];
     dispatch_queue_t pdqueue= dispatch_queue_create("PD_QUEUE", NULL);
     dispatch_async(pdqueue, ^{
         Puredata *pd = (Puredata *)[Puredata sharedPuredata];
@@ -110,6 +113,7 @@
         });
     });
 }
+
 
 - (void)viewDidLoad
 {
