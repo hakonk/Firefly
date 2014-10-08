@@ -3,8 +3,8 @@
  
  View controller, parameters
  
- Håkon Knutzen, Robin, ifi, UIO 2014
- 
+ Håkon Knutzen 2014, Robin, Department of Informatics, University of Oslo
+
  */
 
 #import "FireflyParametersViewController.h"
@@ -17,7 +17,6 @@
 @property (weak, nonatomic) IBOutlet UISlider *pccSlider;
 @property (weak, nonatomic) IBOutlet UISlider *thresholdSlider;
 @property (weak, nonatomic) IBOutlet UISwitch *deafSwitch;
-@property (weak, nonatomic) IBOutlet UILabel *deafEnabledLabel;
 @property (weak, nonatomic) IBOutlet UISlider *deafPeriodSlider;
 @property (weak, nonatomic) IBOutlet UILabel *deafPeriodLabel;
 @property (weak, nonatomic) IBOutlet UILabel *bonkInputLabel;
@@ -26,29 +25,35 @@
 
 @implementation FireflyParametersViewController
 
+#pragma mark - Methods invoked by UI
 - (IBAction)thresholdAction:(UISlider *)sender {
-    self.thresholdLabel.text = [NSString stringWithFormat:@"Set %.2f",sender.value];
+    float sVal=roundf(sender.value*100)/100;
+    self.thresholdLabel.text = [NSString stringWithFormat:@"Set %.2f",sVal];
     Puredata *pd = [Puredata sharedPuredata];
-    [pd setValueInPd:sender.value forKey:@"thresholdFromUI"];
+    [pd setValueInPd:sVal forKey:@"thresholdFromUI"];
 }
 
 - (IBAction)pccAction:(UISlider *)sender {
-    self.pccLabel.text = [NSString stringWithFormat:@"%.2f",sender.value];
+    float sVal=roundf(sender.value*100)/100;
+    self.pccLabel.text = [NSString stringWithFormat:@"%.2f",sVal];
     Puredata *pd = [Puredata sharedPuredata];
-    [pd setValueInPd:sender.value forKey:@"pccFromUI"];
+    [pd setValueInPd:sVal forKey:@"pccFromUI"];
 }
 - (IBAction)deafSliderAction:(UISlider *)sender {
-    self.deafPeriodLabel.text=[NSString stringWithFormat:@"%.2f ms",sender.value];
+    float sVal=roundf(sender.value*100)/100;
+    self.deafPeriodLabel.text=[NSString stringWithFormat:@"%.2f ms",sVal];
     Puredata *pd=[Puredata sharedPuredata];
-    [pd setValueInPd:sender.value forKey:@"deafPeriodFromUI"];
+    [pd setValueInPd:sVal forKey:@"deafPeriodFromUI"];
 }
 - (IBAction)deafEnableAction:(UISwitch *)sender {
     int sendVal=(sender.on)?1:0;
-    self.deafEnabledLabel.text=(sender.on)?@"Enabled":@"Disabled";
     Puredata *pd=[Puredata sharedPuredata];
     [pd setValueInPd:sendVal forKey:@"enableDeaf"];
 }
 
+#pragma mark - Method for assigning values from pd patch to elements in the UI
+
+// handles the values that are received from pd as a list
 -(void)setValuesFromPd:(NSNotification *)notification
 {
     NSEnumerator *received = [(NSMutableDictionary *)[notification object] keyEnumerator];
@@ -67,16 +72,23 @@
         if ([key isEqualToString:@"deafPeriod"]){
             float deafPeriod=[(NSNumber *)[(NSMutableDictionary *)[notification object] valueForKey:key] floatValue];
             self.deafPeriodSlider.value=deafPeriod;
-            self.deafPeriodLabel.text=[NSString stringWithFormat:@"Period %.2f",deafPeriod];
+            self.deafPeriodLabel.text=[NSString stringWithFormat:@"%.2f ms",deafPeriod];
         }
         if([key isEqualToString:@"deafEnable"]){
             int deafEnable=(int)[(NSNumber *)[(NSMutableDictionary *)[notification object] valueForKey:key] integerValue];
-            self.deafEnabledLabel.text=(deafEnable==1) ? @"Enabled":@"Disabled";
             self.deafSwitch.on=(deafEnable==1) ? YES:NO;
         }
     }
 }
+// handles values that are received from the pd onset detection
+-(void)setBonkInput:(NSNotification *)notification
+{
+    float received=[[notification object] floatValue];
+    self.bonkInputLabel.text=[NSString stringWithFormat:@"Detected: %.2f",received];
+}
 
+
+#pragma mark - Life cycle related
 -(void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
@@ -88,6 +100,7 @@
 {
     [super viewWillAppear:animated];
     self.listener = [NSNotificationCenter defaultCenter];
+    // adding listeners to "send objects" in pd
     [self.listener addObserver:self
                       selector:@selector(setValuesFromPd:)
                           name:@"fireflyParameters"
@@ -96,15 +109,11 @@
                        selector:@selector(setBonkInput:)
                            name:@"bonkInput"
                          object:nil];
+    // "poll" pd by sending a bang to the receiver "getParameters"
     Puredata *pd = (Puredata *)[Puredata sharedPuredata];
     [pd sendBangToReceiver:@"getParameters"];
 }
 
--(void)setBonkInput:(NSNotification *)notification
-{
-    float received=[[notification object] floatValue];
-    self.bonkInputLabel.text=[NSString stringWithFormat:@"Detected: %.2f",received];
-}
 
 
 

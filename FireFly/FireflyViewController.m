@@ -3,7 +3,7 @@
  
  View controller, main window
  
- Håkon Knutzen, Robin, ifi, UIO 2014
+ Håkon Knutzen 2014, Robin, Department of Informatics, University of Oslo
  
  */
 
@@ -24,15 +24,8 @@
 @end
 
 @implementation FireflyViewController
-
-// toggle tab bar visible
-- (void)tappedScreen:(UITapGestureRecognizer *)sender {
-    if (sender.state == UIGestureRecognizerStateEnded)
-        [self.navigationController setNavigationBarHidden:!self.navigationController.navigationBarHidden
-                                                 animated:YES];
-}
-
-// lazy instantiation of array holding the two firefly images
+#pragma mark - Lazy instantiation
+// lazy instantiation of array holding the two firefly images, image files for iphone 6 and iphone 6 plus not included yet
 -(NSArray *)flyArray
 {
     NSString *path = [[NSBundle mainBundle] resourcePath];
@@ -48,15 +41,61 @@
             _flyArray = [[NSArray alloc] initWithObjects:on, off, nil];
         }
         else if(IS_SIX_RES){
-            
+            // import image files here
         }
         else if(IS_SIXPLUS_RES){
-            
+            // import image files here
         }
         else
             _flyArray = nil;
     }
     return _flyArray;
+}
+#pragma mark - Selector methods
+// toggling the navigation bar, invoked upon recognition of single tap
+- (void)tappedScreen:(UITapGestureRecognizer *)sender {
+    if (sender.state == UIGestureRecognizerStateEnded)
+        [self.navigationController setNavigationBarHidden:!self.navigationController.navigationBarHidden
+                                                 animated:YES];
+}
+
+// method for changing between active and passive firefly
+-(void)changePicture:(NSNotification *)notification
+{
+    int index = [[notification object] isKindOfClass:[NSNumber class]] ? (int)[[notification object] integerValue] : -1;
+    if (index==0 || index==1)
+        self.background.image = [[self.flyArray objectAtIndex:index] copy];
+    else
+        NSLog(@"Background image error: Value from pd not a number or out of array bounds");
+}
+#pragma mark - Life cycle related
+// called in view did load. configuration of view, gesture recognizers, tab bar, pd
+-(void)configureViewAndPd
+{
+    // toggle activity indicator on
+    [self.activityIndicator startAnimating];
+    // assign gesture recognizer
+    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                                           action:@selector(tappedScreen:)];
+    tapGestureRecognizer.numberOfTapsRequired = 1;
+    [self.view addGestureRecognizer:tapGestureRecognizer];
+    // set initial background image
+    self.background.image = [[self.flyArray objectAtIndex:0] copy];
+    self.navigationController.navigationBar.barTintColor = [UIColor clearColor];
+    [self.navigationController setNavigationBarHidden:YES
+                                             animated:NO];
+    // open patch on other queue
+    dispatch_queue_t pdqueue= dispatch_queue_create("PD_QUEUE", NULL);
+    dispatch_async(pdqueue, ^{
+        Puredata *pd = (Puredata *)[Puredata sharedPuredata];
+        [pd openPatch:@"newFirefly.pd"];
+        [pd.audioController setActive:YES];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            // toggle activity indicator off on main queue
+            __weak FireflyViewController *weakSelf = self;
+            [weakSelf.activityIndicator stopAnimating];
+        });
+    });
 }
 
 //setting the view controller up to listen to messages from pd that are broadcasted from the Puredata singleton object
@@ -70,48 +109,13 @@
                         object:nil];
 }
 
-// remove listener when disappearing
+// remove listener when view controller is disappearing
 -(void)viewDidDisappear:(BOOL)animated
 {
     [super viewDidDisappear:animated];
     [self.listener removeObserver:self];
     self.listener = nil;
     self.flyArray=nil;
-}
-
-// method for changing between active and passive firefly
--(void)changePicture:(NSNotification *)notification
-{
-    int index = [[notification object] isKindOfClass:[NSNumber class]] ? (int)[[notification object] integerValue] : -1;
-    if (index==0 || index==1)
-        self.background.image = [[self.flyArray objectAtIndex:index] copy];
-    else
-        NSLog(@"Background image error: Value from pd not a number or out of array bounds");
-}
-
-// called in view did load. configuration of view, gesture recognizers, tab bar, pd
--(void)configureViewAndPd
-{
-    [self.activityIndicator startAnimating];
-    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self
-                                                                                           action:@selector(tappedScreen:)];
-    tapGestureRecognizer.numberOfTapsRequired = 1;
-    [self.view addGestureRecognizer:tapGestureRecognizer];
-    self.background.image = [[self.flyArray objectAtIndex:0] copy];
-    self.navigationController.navigationBar.barTintColor = [UIColor clearColor];
-    [self.navigationController setNavigationBarHidden:YES
-                                             animated:NO];
-    dispatch_queue_t pdqueue= dispatch_queue_create("PD_QUEUE", NULL);
-    dispatch_async(pdqueue, ^{
-        Puredata *pd = (Puredata *)[Puredata sharedPuredata];
-        [pd openPatch:@"newFirefly.pd"];
-        [pd.audioController setActive:YES];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            // avoid retain cycle by assigning self to a weak pointer before passing it to the block
-            __weak FireflyViewController *weakSelf = self;
-            [weakSelf.activityIndicator stopAnimating];
-        });
-    });
 }
 
 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="DnR-Hd-wiC">
     <dependencies>
-        <deployment defaultVersion="1808" identifier="iOS"/>
+        <deployment defaultVersion="1536" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -147,12 +147,6 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enabled" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gue-sI-MKI">
-                                                    <rect key="frame" x="249" y="12" width="63" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bkI-xK-hY4">
                                                     <rect key="frame" x="8" y="7" width="51" height="31"/>
                                                     <connections>
@@ -163,8 +157,6 @@
                                             <constraints>
                                                 <constraint firstItem="bkI-xK-hY4" firstAttribute="leading" secondItem="ILk-Yy-mgB" secondAttribute="leadingMargin" id="QqS-tD-9Zv"/>
                                                 <constraint firstItem="bkI-xK-hY4" firstAttribute="centerY" secondItem="ILk-Yy-mgB" secondAttribute="centerY" id="ZRj-jC-fgl"/>
-                                                <constraint firstItem="bkI-xK-hY4" firstAttribute="centerY" secondItem="Gue-sI-MKI" secondAttribute="centerY" id="fp3-Bx-Imn"/>
-                                                <constraint firstItem="Gue-sI-MKI" firstAttribute="trailing" secondItem="ILk-Yy-mgB" secondAttribute="trailingMargin" id="giE-o6-NCh"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -175,8 +167,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="400 ms" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="89J-bX-2jt">
-                                                    <rect key="frame" x="8" y="35" width="57" height="21"/>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 ms" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="89J-bX-2jt">
+                                                    <rect key="frame" x="8" y="35" width="38" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
@@ -208,7 +200,6 @@
                     <navigationItem key="navigationItem" id="LBd-To-IXc"/>
                     <connections>
                         <outlet property="bonkInputLabel" destination="QFh-uS-bw0" id="Bcr-uh-0Zh"/>
-                        <outlet property="deafEnabledLabel" destination="Gue-sI-MKI" id="6Gi-no-JC2"/>
                         <outlet property="deafPeriodLabel" destination="89J-bX-2jt" id="iMz-IH-Ag7"/>
                         <outlet property="deafPeriodSlider" destination="Y7M-rP-nJf" id="slD-pa-sxN"/>
                         <outlet property="deafSwitch" destination="bkI-xK-hY4" id="L2Z-VK-EqG"/>

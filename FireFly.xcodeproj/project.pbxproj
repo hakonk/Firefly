@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F8097A8F19E53F2600286686 /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = F8097A8E19E53F2600286686 /* LICENSE.txt */; };
 		F82B22EA19B768B9001600C9 /* Puredata.m in Sources */ = {isa = PBXBuildFile; fileRef = F82B22E919B768B9001600C9 /* Puredata.m */; };
 		F82B22FA19B768D5001600C9 /* AudioHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = F82B22ED19B768D5001600C9 /* AudioHelpers.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F82B22FB19B768D5001600C9 /* PdAudioController.m in Sources */ = {isa = PBXBuildFile; fileRef = F82B22EF19B768D5001600C9 /* PdAudioController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -153,6 +154,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F8097A8E19E53F2600286686 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = LICENSE.txt; path = "pure-data/src/LICENSE.txt"; sourceTree = "<group>"; };
 		F82B22E819B768B9001600C9 /* Puredata.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Puredata.h; sourceTree = "<group>"; };
 		F82B22E919B768B9001600C9 /* Puredata.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Puredata.m; sourceTree = "<group>"; };
 		F82B22EC19B768D5001600C9 /* AudioHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioHelpers.h; sourceTree = "<group>"; };
@@ -345,6 +347,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F8097A9019E5405C00286686 /* libpd */ = {
+			isa = PBXGroup;
+			children = (
+				F8097A8E19E53F2600286686 /* LICENSE.txt */,
+				F82B230119B768ED001600C9 /* libpd_wrapper */,
+				F82B231019B768ED001600C9 /* pure-data */,
+				F82B22EB19B768D5001600C9 /* objc */,
+			);
+			name = libpd;
+			sourceTree = "<group>";
+		};
 		F82B22EB19B768D5001600C9 /* objc */ = {
 			isa = PBXGroup;
 			children = (
@@ -587,9 +600,7 @@
 		F8E89EAC199E3B380009273C /* FireFly */ = {
 			isa = PBXGroup;
 			children = (
-				F82B230119B768ED001600C9 /* libpd_wrapper */,
-				F82B231019B768ED001600C9 /* pure-data */,
-				F82B22EB19B768D5001600C9 /* objc */,
+				F8097A9019E5405C00286686 /* libpd */,
 				F8E89EBB199E3B380009273C /* Main_iPad.storyboard */,
 				F8E89EBE199E3B380009273C /* FireflyViewController.h */,
 				F8E89EB8199E3B380009273C /* Main_iPhone.storyboard */,
@@ -748,6 +759,7 @@
 				F82B239719B768ED001600C9 /* README.txt in Resources */,
 				F82B238719B768ED001600C9 /* choice-help.pd in Resources */,
 				F8E89EB1199E3B380009273C /* InfoPlist.strings in Resources */,
+				F8097A8F19E53F2600286686 /* LICENSE.txt in Resources */,
 				F8E89EE1199E3C4B0009273C /* FF_tall_on@2x.png in Resources */,
 				F82B23A219B768ED001600C9 /* stdout-help.pd in Resources */,
 				F82B23A419B768ED001600C9 /* CHANGELOG.txt in Resources */,
@@ -1006,6 +1018,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "FireFly/FireFly-Prefix.pch";
 				INFOPLIST_FILE = "FireFly/FireFly-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1019,6 +1032,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "FireFly/FireFly-Prefix.pch";
 				INFOPLIST_FILE = "FireFly/FireFly-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

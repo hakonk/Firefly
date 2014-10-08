@@ -3,7 +3,8 @@
  
  View controller, parameters
  
- Håkon Knutzen, Robin, ifi, UIO 2014
+ Håkon Knutzen 2014, Robin, Department of Informatics, University of Oslo
+
  
  */
 

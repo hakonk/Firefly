@@ -1,4 +1,4 @@
-#N canvas 876 67 1355 1067 10;
+#N canvas 380 71 1162 1078 10;
 #X obj 115 46 bonk~;
 #X obj 115 139 snapshot~;
 #X obj 115 195 > 0.98;
@@ -25,8 +25,8 @@
 #X obj 115 67 b;
 #X obj 130 449 + 0.1;
 #X obj 79 518 phasor~ 1;
-#X obj 140 542 throw~ phasorSig;
-#X obj 119 99 catch~ phasorSig;
+#X obj 149 537 throw~ phasorSig;
+#X obj 124 100 catch~ phasorSig;
 #X obj 172 385 r pccFromUI;
 #X obj 249 385 r thresholdFromUI;
 #X obj 79 637 random 5;
@@ -46,24 +46,24 @@
 #X obj 249 442 s toBonk;
 #X obj 260 90 s toBonk;
 #X obj 185 30 r toBonk;
-#X obj 473 965 s listFromPd;
+#X obj 473 920 s listFromPd;
 #X obj 269 245 r getParameters;
 #X obj 441 315 loadbang;
-#X text 711 718 Håkon Knutzen \, 2014 \, Robin \, IFI \, UiO;
-#X obj 80 554 delta~;
+#X text 871 943 Håkon Knutzen \, 2014 \, Robin \, IFI \, UiO;
+#X obj 79 554 delta~;
 #X obj 130 486 clip 0 1;
-#X obj 80 578 <~ 0;
-#X obj 80 603 threshold~ 1 5 0.5 5;
-#X obj 174 -29 line~;
-#X obj 107 6 *~;
+#X obj 79 578 <~ 0;
+#X obj 79 603 threshold~ 1 5 0.5 5;
+#X obj 130 -29 line~;
+#X obj 115 20 *~;
 #X obj 317 711 0;
 #X obj 323 770 s selfHearEnable;
-#X obj 214 -62 r selfHearEnable;
+#X obj 130 -69 r selfHearEnable;
 #X obj 79 702 t b f b;
-#X obj 397 671 r deafPeriodFromUI;
+#X obj 439 645 r deafPeriodFromUI;
 #X obj 190 733 spigot;
 #X obj 222 649 loadbang;
-#X obj 329 834 r enableDeaf;
+#X obj 313 822 r enableDeaf;
 #X obj 256 701 f;
 #X obj 423 710 f;
 #X obj 529 674 loadbang;
@@ -71,26 +71,24 @@
 #X obj 473 872 pack f f f f;
 #X msg 473 896 list deafPeriod \$1 deafEnable \$2 pcc \$3 threshold
 \$4;
-#X text 708 694 adaptation of Kristian Nymoen's patch;
-#X obj 427 770 print hearing;
+#X text 871 923 adaptation of Kristian Nymoen's patch;
+#X obj 427 771 print hearing;
 #X text 567 861 NB! list must conform to pattern <key> <value> \, i.e.
 \, <string> <float>;
 #X obj 471 374 70;
-#X text 419 294 default parameters: PCC 0.1 \, bonk minimum velocity
+#X text 435 296 default parameters: PCC 0.1 \, bonk minimum velocity
 70;
 #X text -37 650 for firefly image;
 #X text 226 634 default: deaf disabled;
-#X obj 59 -87 adc~;
+#X obj 94 -69 adc~;
 #X msg 260 67 thresh 7 10;
-#X obj 334 -57 loadbang;
-#X obj 284 -32 1;
-#X msg 231 142 \$2;
-#X obj 231 168 s bonkInput;
-#X obj 315 145 print bonkInput;
-#X obj 478 231 hsl 128 15 0 100 0 0 empty empty empty -2 -8 0 10 -262144
--1 -1 5500 1;
-#X floatatom 475 251 5 0 0 0 - - -;
-#X text 479 203 for testing;
+#X obj 233 -90 loadbang;
+#X obj 233 -69 1;
+#X msg 231 137 \$2;
+#X obj 231 163 s bonkInput;
+#X obj 630 194 hsl 128 15 0 100 0 0 empty empty empty -2 -8 0 10 -262144
+-1 -1 0 1;
+#X floatatom 627 217 5 0 0 0 - - -;
 #X obj 115 818 *~;
 #X msg 117 766 0 0 0 \, 1 1 0 \, 0 400 2;
 #X obj 516 540 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
@@ -100,90 +98,34 @@
 #X obj 77 851 *~ 1;
 #X text 523 518 deaf enable;
 #X obj 428 374 0.1;
-#X obj 58 -42 *~ 1;
-#N canvas 0 22 450 278 (subpatch) 0;
-#X array input 256 float 3;
-#A 0 -0.00112064 -0.0010857 -0.00106948 -0.00119351 -0.00149564 -0.00186347
--0.00204135 -0.0018818 -0.00150061 -0.00112613 -0.000863024 -0.000699852
--0.000508925 -0.000134584 0.00032749 0.00072552 0.00101631 0.00109462
-0.00110545 0.0011561 0.00101011 0.000625457 0.000151568 -0.000143264
--8.62614e-05 7.7976e-05 0.000191697 0.000322684 0.00042232 0.000534652
-0.000656152 0.000560711 0.000310189 9.9475e-05 -6.90728e-05 -0.000162893
--0.00019081 -0.000218877 -0.000163469 5.11648e-05 0.000182596 -5.81021e-05
--0.000438241 -0.000647228 -0.000829636 -0.000973484 -0.000931535 -0.000950498
--0.00119109 -0.001344 -0.00120529 -0.00101212 -0.000895961 -0.000680635
--0.000222075 0.000332279 0.000675547 0.000725588 0.000644164 0.000549956
-0.000447273 0.000417556 0.000386225 0.000203846 -1.15847e-05 -0.000162745
--0.000242351 -0.00015194 0.000127592 0.000390182 0.000526965 0.000563308
-0.00051437 0.000496655 0.000607611 0.000823638 0.000963804 0.000949515
-0.00093295 0.000853037 0.000613164 0.000346897 0.000213219 0.000233405
-0.000208125 0.000102465 -2.11453e-05 -0.000164181 -0.000214625 -0.000209171
--0.000172012 -5.79358e-05 0.000131471 0.000409673 0.000657036 0.000793696
-0.000919953 0.00108671 0.00123218 0.00126774 0.0011447 0.00104018 0.00104572
-0.001031 0.000926683 0.000657507 0.000343462 0.00023487 0.000285426
-0.000301613 0.000291857 0.000312418 0.000382655 0.000572067 0.000743153
-0.00073118 0.000610781 0.000504375 0.00050016 0.000617423 0.00076435
-0.000866622 0.000896693 0.000801686 0.000592344 0.0003395 0.000147529
--8.61904e-06 -0.000225906 -0.000361864 -0.000338625 -0.000364461 -0.000493451
--0.000561582 -0.000582795 -0.000527892 -0.000334952 -7.70103e-05 0.000177478
-0.000249539 0.000140469 5.31286e-05 0.000109864 0.000198369 0.000165793
-9.2905e-05 -4.43394e-05 -0.000202506 -0.000268357 -0.00024822 -0.000177947
--0.000266931 -0.000519312 -0.000614432 -0.000463279 -0.000310903 -0.00024916
--0.000189103 -0.00019718 -0.000323015 -0.000456815 -0.00051261 -0.000526897
--0.000474237 -0.000246073 -3.62686e-06 3.28469e-07 -7.9554e-05 -0.000124916
--0.00036968 -0.000684923 -0.000727218 -0.000581961 -0.000443055 -0.000414899
--0.000512587 -0.000582307 -0.000525079 -0.000323333 -9.5677e-05 -8.56604e-06
-2.46118e-05 2.48153e-05 -2.78201e-05 6.84393e-06 6.41859e-05 7.30363e-05
-0.000189531 0.000369339 0.000376423 0.000257578 6.06234e-05 -0.000294205
--0.000543245 -0.000649345 -0.00083035 -0.000811288 -0.000511909 -0.000258129
--5.62144e-05 5.65504e-05 -0.000142906 -0.000463621 -0.000608552 -0.000611828
--0.000523396 -0.000443834 -0.000479755 -0.000565717 -0.000758601 -0.00104354
--0.00118585 -0.00116018 -0.00109282 -0.00102848 -0.000984263 -0.000966131
--0.000978759 -0.00100705 -0.000968532 -0.000821849 -0.000649051 -0.000483894
--0.000303355 -0.000109687 0.000158702 0.00052606 0.00086144 0.000938497
-0.000642011 0.000269305 0.000111696 -3.10598e-05 -0.000213822 -0.000349612
--0.000676016 -0.00112037 -0.00133396 -0.00132209 -0.00122768 -0.00102242
--0.000658139 -0.000368311 -0.000258377 -8.79977e-05 6.28063e-05 0.000118448
-0.000223667 0.000186842 -9.15836e-05 -0.000358715 -0.000480372 -0.000524001
--0.000598644 -0.000756602 -0.00090444;
-#X coords 0 0.25 256 -0.25 200 140 1 0 0;
-#X restore 692 -26 graph;
-#X obj 546 -2 tabwrite~ input;
-#X obj 546 -32 metro 15;
-#X obj 545 -60 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
-1;
+#X obj 94 -29 *~ 1;
 #X floatatom 569 584 5 0 0 0 - - -;
-#X obj 148 -3 *~;
-#N canvas 0 22 450 278 (subpatch) 0;
-#X array deafEnv 256 float 3;
-#A 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
-1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
-1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
-1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
-1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
-1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
-1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
-1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1;
-#X coords 0 1 256 0 200 140 1 0 0;
-#X restore 926 -22 graph;
-#X obj 542 23 tabwrite~ deafEnv;
+#X obj 130 -4 *~;
 #X msg 352 699 1 50;
 #X msg 632 622 set 1 \$1;
 #X floatatom 632 590 5 0 0 0 - - -;
-#X text 663 585 exp time;
-#X text 569 566 wait;
-#X obj 0 116 dac~;
-#X obj 179 931 throw~ testBus;
-#X obj -39 -65 catch~ testBus;
-#X text 759 489 25 wait \, 100 exptime;
-#X text 858 546 wait 10 \, exptime 143;
 #X obj 222 671 1;
 #X obj 528 697 10;
-#X msg 464 459 0.3;
-#X obj 523 97 >;
-#X obj 484 99 f;
-#X obj 467 71 t f f b;
-#X obj 467 132 spigot;
+#X text 569 566 deafness duration;
+#X text 666 587 exp raise time;
+#X text 712 445 25 deafness duration \, 100 exptime;
+#X text 710 468 deafness duration 10 \, exptime 143;
+#X text 715 419 experimenting with values:;
+#X text 394 822 <-from UI;
+#X text 31 722 <- send to UI;
+#X text 228 213 "poll" request from objective-c code triggers a sequence
+of bangs to get the values;
+#X text 625 175 for testing minvel of bonk;
+#X text 226 903 <- clip range;
+#X text 203 878 <- filter out DC if any;
+#X text 144 807 <- exp amplitude envelope;
+#X text 123 556 <- difference value;
+#X text 416 28 <- setting notes in array;
+#X text 33 -69 input ->;
+#X text 3 44 onset detection->;
+#X text 261 131 <- sending the detected velocity such that the label
+in the UI can be updated;
+#X text -44 793 audio synthesis ->;
 #X connect 0 0 23 0;
 #X connect 0 1 82 0;
 #X connect 1 0 17 0;
@@ -194,7 +136,7 @@
 #X connect 7 0 4 0;
 #X connect 8 0 9 0;
 #X connect 9 0 10 0;
-#X connect 10 0 93 0;
+#X connect 10 0 91 0;
 #X connect 11 0 20 0;
 #X connect 12 0 18 0;
 #X connect 13 0 12 0;
@@ -226,8 +168,8 @@
 #X connect 33 0 32 0;
 #X connect 33 0 79 0;
 #X connect 35 0 60 0;
-#X connect 36 0 88 0;
-#X connect 36 0 88 1;
+#X connect 36 0 86 0;
+#X connect 36 0 86 1;
 #X connect 38 0 37 0;
 #X connect 39 0 40 0;
 #X connect 40 0 37 0;
@@ -237,33 +179,32 @@
 #X connect 46 0 0 0;
 #X connect 48 0 68 0;
 #X connect 49 0 74 0;
-#X connect 49 0 95 0;
+#X connect 49 0 93 0;
 #X connect 51 0 53 0;
 #X connect 52 0 25 1;
 #X connect 53 0 54 0;
 #X connect 54 0 30 0;
 #X connect 54 0 38 0;
 #X connect 54 0 39 0;
-#X connect 55 0 102 0;
-#X connect 55 0 102 1;
+#X connect 55 0 96 0;
+#X connect 55 0 96 1;
 #X connect 56 0 0 0;
-#X connect 56 0 98 0;
 #X connect 57 0 58 0;
 #X connect 57 0 72 0;
 #X connect 59 0 55 0;
-#X connect 60 0 89 0;
+#X connect 60 0 87 0;
 #X connect 60 1 8 0;
 #X connect 60 2 62 0;
 #X connect 61 0 66 1;
-#X connect 61 0 91 1;
-#X connect 62 0 91 0;
+#X connect 61 0 89 1;
+#X connect 62 0 89 0;
 #X connect 62 0 57 0;
-#X connect 63 0 115 0;
+#X connect 63 0 100 0;
 #X connect 64 0 65 1;
 #X connect 64 0 62 1;
 #X connect 65 0 69 1;
 #X connect 66 0 69 0;
-#X connect 67 0 116 0;
+#X connect 67 0 101 0;
 #X connect 68 0 66 0;
 #X connect 68 1 65 0;
 #X connect 68 2 41 0;
@@ -272,42 +213,31 @@
 #X connect 70 0 47 0;
 #X connect 74 0 42 1;
 #X connect 74 0 43 0;
-#X connect 78 0 96 0;
-#X connect 78 1 96 0;
+#X connect 78 0 94 0;
+#X connect 78 1 94 0;
 #X connect 79 0 45 0;
 #X connect 80 0 81 0;
 #X connect 81 0 55 0;
 #X connect 82 0 83 0;
-#X connect 82 0 84 0;
-#X connect 85 0 86 0;
-#X connect 86 0 43 0;
-#X connect 88 0 10 1;
-#X connect 89 0 36 0;
-#X connect 90 0 62 1;
-#X connect 91 0 105 0;
-#X connect 91 0 92 0;
-#X connect 92 0 72 0;
-#X connect 93 0 7 0;
-#X connect 93 0 6 0;
-#X connect 95 0 41 1;
-#X connect 95 0 22 1;
-#X connect 96 0 56 0;
+#X connect 84 0 85 0;
+#X connect 85 0 43 0;
+#X connect 86 0 10 1;
+#X connect 87 0 36 0;
+#X connect 88 0 62 1;
+#X connect 89 0 97 0;
+#X connect 89 0 90 0;
+#X connect 90 0 72 0;
+#X connect 91 0 7 0;
+#X connect 91 0 6 0;
+#X connect 93 0 41 1;
+#X connect 93 0 22 1;
+#X connect 94 0 56 0;
+#X connect 95 0 89 1;
+#X connect 96 0 56 1;
+#X connect 97 0 58 0;
+#X connect 98 0 97 0;
 #X connect 99 0 98 0;
-#X connect 99 0 104 0;
-#X connect 100 0 99 0;
-#X connect 101 0 91 1;
-#X connect 102 0 56 1;
-#X connect 102 0 104 0;
-#X connect 105 0 58 0;
-#X connect 106 0 105 0;
-#X connect 107 0 106 0;
-#X connect 115 0 62 1;
-#X connect 115 0 65 1;
-#X connect 116 0 66 1;
-#X connect 116 0 91 1;
-#X connect 117 0 25 1;
-#X connect 118 0 121 1;
-#X connect 119 0 118 1;
-#X connect 120 0 121 0;
-#X connect 120 1 118 0;
-#X connect 120 2 119 0;
+#X connect 100 0 62 1;
+#X connect 100 0 65 1;
+#X connect 101 0 66 1;
+#X connect 101 0 89 1;
